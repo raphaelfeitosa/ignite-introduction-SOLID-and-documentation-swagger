@@ -1,0 +1,82 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+        "title": "Swagger Ignite Sample",
+        "description": "Sample documentation swagger.",
+        "termsOfService": "http://swagger.io/terms/",
+        "contact": {
+            "email": "raphaelcs2@gmail.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0.0"
+    },
+    "externalDocs": {
+        "description": "Documentation Swagger",
+        "url": "http://swagger.io"
+    },
+    "tags": [
+        {
+            "name": "User",
+            "description": "Operations related to user records",
+            "externalDocs": {
+                "description": "More details about the registry",
+                "url": "http://sitename.com/documentation/store/users"
+            }
+        }
+    ],
+    "paths": {
+        "/users": {
+            "post": {
+                "tags": [
+                    "users"
+                ],
+                "summary": "Create new User",
+                "description": "Create new user, enter name and email",
+                "operationId": "createUser",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object"
+                            ,
+                            "properties": {
+                                "name": {
+                                    "type": "string"
+                                },
+                                "email": {
+                                    "type": "string"
+                                }
+                            },
+                            "example": {
+                                "name": "John Doe",
+                                "email": "johndoe@email.com"
+                            }
+                        }
+                    },
+                    "required": true
+                }
+            },
+                "responses": {
+                    "201": {
+                        "description": "User created successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/User"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "E-mail já registrado",
+                        "content": {}
+                    }
+                },
+                "x-codegen-request-body-name": "body"
+            }
+        }
+    }
+}
